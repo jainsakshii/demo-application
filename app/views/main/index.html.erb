@@ -1,7 +1,13 @@
-<h1> WELCOME To BOOK MY SHOW!</h1>
+
+<h1 class = "text-center"> WELCOME To BOOK MY SHOW!</h1>
+<%# <% img src="https://miro.medium.com/max/1400/0*8PGv7Cdg7xt_D70e" alt="rss feed", style="backgorund-image"%/> %>
 
 <% if user_signed_in? %>
-  <%= link_to "Signout",  destroy_user_session_path, method: :delete, class: "nav-link" %>
+  <div class="text-center">
+    <%= link_to "Signout",  destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+  </div>
 <% else %>
-  <%= link_to "Sign In", new_user_session_path %>
+  <div class = "text-center">
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-danger" %>
+  </div>
 <% end %>
