@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 1.upto(5) do |i|
-  User.create(:email => "user#{i}@yopmail.com", :password => "password#{i}",:password_confirmation => "password#{i}",)
+
+  User.create(:name => "S#{i}",:email => "user#{i}@yopmail.com", :password => "password#{i}",:password_confirmation => "password#{i}")
 end
 
 

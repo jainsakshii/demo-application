@@ -1,0 +1,22 @@
+<%= form_with model: @theatre do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :contact_number %><br>
+    <%= form.text_field :contact_number %>
+  </div>
+
+  <div>
+    <%= form.label :venue %><br>
+    <%= form.text_area :venue %>
+  </div>
+  <div>
+    <%= form.select(:theatre_administrator_id, options_for_select(User.all.collect { |l| [ l.name,l.id] }),{:class => "form-select"}) %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
