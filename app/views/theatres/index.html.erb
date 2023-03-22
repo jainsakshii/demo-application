@@ -1,3 +1,4 @@
+<% if current_user.has_role? :admin %>
 <h1>All Theatres</h1>
 <ul>
   <% @theatres.each do |theatre| %>
@@ -11,5 +12,21 @@
     </li>
   <% end %>
 </ul>
- <%= link_to "Create Theatre", new_theatre_path, class: "btn btn-danger"%>
-
+<%= link_to "Create Theatre", new_theatre_path, class: "btn btn-danger"%>
+<% elsif current_user.has_role? :theatre_admin %>
+<h1> All your Theatres </h1>
+<ul>
+  <% @theatres.each do |theatre| %>
+  <% if current_user.id == theatre.theatre_administrator_id%>
+    <li>
+    <%= theatre.name %>
+    <%= theatre.contact_number %>
+    <%= theatre.venue %>
+    <%= theatre.theatre_administrator_id %>
+    <%= link_to "Edit", edit_theatre_path(theatre), class: "btn btn-danger" %>
+    <%= link_to "Destroy", theatre_path(theatre), data: { method: :delete }, class: "btn btn-danger" %>
+  <% end %>
+  </li>
+  <% end %>
+</ul>
+<%end%>
