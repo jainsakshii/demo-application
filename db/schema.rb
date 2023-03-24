@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_20_134756) do
+ActiveRecord::Schema.define(version: 2023_03_24_070218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(version: 2023_03_20_134756) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "screens", force: :cascade do |t|
+    t.bigint "theatre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["theatre_id"], name: "index_screens_on_theatre_id"
+  end
+
+  create_table "showtimes", force: :cascade do |t|
+    t.string "name"
+    t.time "schedule"
+    t.bigint "screen_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["screen_id"], name: "index_showtimes_on_screen_id"
   end
 
   create_table "theatres", force: :cascade do |t|
@@ -64,4 +81,6 @@ ActiveRecord::Schema.define(version: 2023_03_20_134756) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "screens", "theatres"
+  add_foreign_key "showtimes", "screens"
 end

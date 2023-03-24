@@ -7,6 +7,11 @@ class TheatresController < ApplicationController
     @theatre = Theatre.new
   end
 
+  def show
+    @theatre = Theatre.find(params[:id])
+    # @screen = @theatre.screen
+  end
+   
   def create
     @theatre = Theatre.create(theatre_params)
     if @theatre.save

@@ -12,7 +12,9 @@
     <%= form.label :venue %><br>
     <%= form.text_area :venue %>
   </div>
+  <br>
   <div>
+    <p> Assign Role </p>
     <%= form.select(:theatre_administrator_id, options_for_select(User.all.collect { |l| [ l.name,l.id] }),{:class => "form-select"}) %>
   </div>
   <div>

@@ -58,7 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'awesome_print'
 gem 'rolify'
-
-
-
-
+gem 'vanilla_nested'
