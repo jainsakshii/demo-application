@@ -1,8 +1,10 @@
 class TheatresController < ApplicationController
   before_action :get_theatre, only: [:show,:edit,:update,:destroy]
-  
+  load_and_authorize_resource
+
   def index
-    @theatres = Theatre.all
+    #@theatres = Theatre.all
+    @theatres = Theatre.accessible_by(current_ability)
   end
 
   def new
