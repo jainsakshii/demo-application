@@ -1,16 +1,27 @@
 <% if current_user.has_role? :admin %>
 <h1>All Theatres</h1>
 <ul>
+  <div class="row row-cols-1 row-cols-md-3">
   <% @theatres.each do |theatre| %>
-    <li>
-      <%= theatre.name %>
+    <div class="col-md-3">
+    <div class="card text-white bg-secondary bg-gradient mb-3" style="max-width: 18rem;">
+    <div class="card-body">
+    <h5 class="card-title">
+      <%= theatre.name.capitalize%>
+    </h5>
+    <p class="card-text">
       <%= theatre.contact_number %>
+      <br>
       <%= theatre.venue %>
       <%= theatre.theatre_administrator_id %>
-      <%= link_to "Edit", edit_theatre_path(theatre), class: "btn btn-danger" %>
-      <%= link_to "Destroy", theatre_path(theatre), data: { method: :delete }, class: "btn btn-danger" %>
-    </li>
+    </p>
+      <%= link_to "Edit", edit_theatre_path(theatre), class: "btn btn-danger bg-gradient" %>
+      <%= link_to "Destroy", theatre_path(theatre), data: { method: :delete }, class: "btn btn-danger bg-gradient" %>
+    </div>
+    </div>
+    </div>
   <% end %>
+  </div>
 </ul>
 <%= link_to "Create Theatre", new_theatre_path, class: "btn btn-danger"%>
 
@@ -18,12 +29,14 @@
 <h1> All your Theatres </h1>
     <% @theatres.each do |theatre| %>
       <% if current_user.id == theatre.theatre_administrator_id%>
-        <div class="card text-center" style="width: 18rem;">
+        <div class="col-md-3">
+        <div class="card text-white bg-secondary bg-gradient mb-3" style="max-width: 18rem;">
         <div class="card-body">
-        <h5 class = "card-title"> 
+        <h5 class="card-title">
         <%= theatre.name %>
         </h5>
         <%= link_to "Show Theatre", theatre_path(theatre), class: "btn btn-danger" %>
+        </div>
         </div>
         </div>
       <% end %>
@@ -37,5 +50,13 @@
     <h5 class="card-title">Card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>-->
+<!--<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Dark card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-danger">Go somewhere</a>
+
   </div>
 </div>-->

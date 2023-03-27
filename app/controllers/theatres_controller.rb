@@ -1,4 +1,6 @@
 class TheatresController < ApplicationController
+  before_action :get_theatre, only: [:show,:edit,:update,:destroy]
+  
   def index
     @theatres = Theatre.all
   end
@@ -8,8 +10,6 @@ class TheatresController < ApplicationController
   end
 
   def show
-    @theatre = Theatre.find(params[:id])
-    # @screen = @theatre.screen
   end
    
   def create
@@ -25,12 +25,9 @@ class TheatresController < ApplicationController
   end
 
   def edit
-    @theatre = Theatre.find(params[:id])
   end
    
   def update 
-    @theatre = Theatre.find(params[:id])
-
     if @theatre.update(theatre_params)
       user_id = theatre_params[:theatre_administrator_id]
       user = User.find(user_id)
@@ -42,11 +39,16 @@ class TheatresController < ApplicationController
   end
 
   def destroy
-    @theatre = Theatre.find(params[:id])
     @theatre.destroy
     redirect_to theatres_path, status: :see_other
   end
+
   private
+
+  def get_theatre
+    @theatre = Theatre.find(params[:id])
+  end
+  
   def theatre_params
     params.require(:theatre).permit(:name,:venue,:contact_number,:theatre_administrator_id)
   end

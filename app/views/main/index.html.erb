@@ -1,11 +1,1 @@
-
 <h1 class = "text-center"> WELCOME To BOOK MY SHOW!</h1>
-<% if user_signed_in? %>
-  <div class="text-center">
-    <%= link_to "Signout",  destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-  </div>
-<% else %>
-  <div class = "text-center">
-    <%= link_to "Sign In", new_user_session_path, class: "btn btn-danger" %>
-  </div>
-<% end %>
