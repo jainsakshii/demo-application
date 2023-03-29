@@ -1,0 +1,25 @@
+<%= render "search_movie",movie: @movie%>
+
+<h1>All Movies</h1>
+<ul>
+  <div class="row row-cols-1 row-cols-md-3">
+  <% @movies.each do |movie| %>
+    <div class="col-md-3">
+    <div class="card text-white bg-secondary bg-gradient mb-3" style="max-width: 18rem;">
+    <div class="card-body">
+    <h5 class="card-title">
+      <%= movie.name.capitalize%>
+    </h5>
+    <p class="card-text">
+      <%= movie.genre %>
+      <br>
+      <%= movie.description %>
+    </p>
+      <%= link_to "Edit", edit_movie_path(movie), class: "btn btn-danger bg-gradient" %>
+      <%= link_to "Destroy", movie_path(movie), data: { method: :delete }, class: "btn btn-danger bg-gradient" %>
+    </div>
+    </div>
+    </div>
+  <% end %>
+  </div>
+</ul>

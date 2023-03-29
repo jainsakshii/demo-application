@@ -34,6 +34,6 @@ class ScreensController < ApplicationController
 
   private
   def screen_params
-    params.require(:screen).permit(:name,showtimes_attributes: [:id,:name,:schedule,:_destroy])
+    params.require(:screen).permit(:name,showtimes_attributes: [:id,:name,:schedule,:movie_id,:_destroy])
   end
 end

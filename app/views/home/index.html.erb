@@ -3,6 +3,9 @@
     <h2> HEY, Admin!! </h2>
     <%= link_to "All Theatre", theatres_path, class: "btn btn-danger"%>
     <%= link_to "Create Theatre", new_theatre_path, class: "btn btn-danger"%>
+    <%= link_to "Create Movie", new_movie_path, class: "btn btn-danger"%>
+    <%= link_to "All Movies", movies_path, class: "btn btn-danger"%>
+
   </div>
 <% elsif current_user.has_role? :theatre_admin %>
    <div class="text-center">
@@ -12,5 +15,6 @@
 <% else %>
   <div class="text-center">
       <h2> Hey, User! </h2>
+      <%= link_to "All Movies", movies_path, class: "btn btn-danger"%>
   </div>
 <% end %>

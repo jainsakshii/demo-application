@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
          # :confirmable
   validates :name,presence: true
+  #User can have multiple theatre so we might change it to has_many
+  has_one :theatre
   after_create :assign_default_role
    
   def assign_default_role

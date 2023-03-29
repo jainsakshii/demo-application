@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   root to: "main#index"
   get 'home/index', to: "home#index"
   resources :theatres do
-    resources :screens
+    resources :screens 
   end
+  resources :movies
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

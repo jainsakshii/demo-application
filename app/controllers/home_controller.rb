@@ -3,5 +3,6 @@ class HomeController < ApplicationController
   def index
     @users = User.all
     @theatres = Theatre.all
+    @movies = Movie.all
   end
 end

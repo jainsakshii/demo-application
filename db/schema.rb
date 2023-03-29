@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_24_070218) do
+ActiveRecord::Schema.define(version: 2023_03_28_125637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "movies", force: :cascade do |t|
+    t.string "name"
+    t.string "genre"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -39,12 +47,14 @@ ActiveRecord::Schema.define(version: 2023_03_24_070218) do
     t.bigint "screen_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "movie_id", null: false
+    t.index ["movie_id"], name: "index_showtimes_on_movie_id"
     t.index ["screen_id"], name: "index_showtimes_on_screen_id"
   end
 
   create_table "theatres", force: :cascade do |t|
     t.string "name"
-    t.bigint "theatre_administrator_id"
+    t.bigint "user_id"
     t.string "contact_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,10 +73,6 @@ ActiveRecord::Schema.define(version: 2023_03_24_070218) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -82,5 +88,6 @@ ActiveRecord::Schema.define(version: 2023_03_24_070218) do
   end
 
   add_foreign_key "screens", "theatres"
+  add_foreign_key "showtimes", "movies"
   add_foreign_key "showtimes", "screens"
 end

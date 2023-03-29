@@ -4,7 +4,9 @@
   <div id='showtimes'>
     <%= form.fields_for :showtimes do |showtime_f| %>
       <%= render 'showtime_fields', form: showtime_f %>
+
     <% end %>
   </div>
   <%= form.submit %> 
 <% end %>
+ 
