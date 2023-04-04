@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_30_063143) do
+ActiveRecord::Schema.define(version: 2023_04_04_060129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2023_03_30_063143) do
     t.index ["theatre_id"], name: "index_screens_on_theatre_id"
   end
 
+  create_table "seats", force: :cascade do |t|
+    t.boolean "availablity_status"
+    t.string "price"
+    t.bigint "showtime_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["showtime_id"], name: "index_seats_on_showtime_id"
+  end
+
   create_table "showtimes", force: :cascade do |t|
     t.string "name"
     t.time "schedule"
@@ -54,6 +63,7 @@ ActiveRecord::Schema.define(version: 2023_03_30_063143) do
 
   create_table "theatres", force: :cascade do |t|
     t.string "name"
+    t.bigint "theatre_administrator_id"
     t.string "contact_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -88,6 +98,7 @@ ActiveRecord::Schema.define(version: 2023_03_30_063143) do
   end
 
   add_foreign_key "screens", "theatres"
+  add_foreign_key "seats", "showtimes"
   add_foreign_key "showtimes", "movies"
   add_foreign_key "showtimes", "screens"
 end
