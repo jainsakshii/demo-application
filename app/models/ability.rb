@@ -8,9 +8,10 @@ class Ability
     if user.has_role? :admin 
       can :manage, :all
     elsif user.has_role? :theatre_admin 
-      can :read, Theatre, theatre_administrator_id: user.id
-    else  
-      can :read, Movie
+      can :read, Theatre, user_id: user.id
+    #else  
+      #can :display, Movie
+      #can :manage, Theatre
     end
     #   return unless user.present?
     #   can :read, :all

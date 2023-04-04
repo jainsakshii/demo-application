@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   resources :theatres do
     resources :screens 
   end
-  resources :movies
+  
+  resources :movies do
+    member do
+      get :book_ticket
+    end
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,15 @@
+<div class="list-group">
+<% @theatres.each do |k,v|%>
+  <% if (v.count>0)%>
+    <div class="list-group-item list-group-item-action list-group-item bg-secondary bg-gradient", style="color:white">
+    <%= k.name %>
+    </div>
+  <%end%>
+<% v.each do |temp| %>
+ <button type="button" class="list-group-item list-group-item-action">
+    <%=temp%>
+  </button>
+<%end%>
+<br>
+<%end%>
+</div>

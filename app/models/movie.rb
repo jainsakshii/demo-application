@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  validates :name, presence: true
   has_many :showtimes, dependent: :destroy
   has_many :screens, through: :showtimes
 

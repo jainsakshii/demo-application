@@ -15,8 +15,12 @@
       <br>
       <%= movie.description %>
     </p>
-      <%= link_to "Edit", edit_movie_path(movie), class: "btn btn-danger bg-gradient" %>
-      <%= link_to "Destroy", movie_path(movie), data: { method: :delete }, class: "btn btn-danger bg-gradient" %>
+      <%if current_user.has_role? :admin%>
+        <%= link_to "Edit", edit_movie_path(movie), class: "btn btn-danger bg-gradient" %>
+        <%= link_to "Destroy", movie_path(movie), data: { method: :delete }, class: "btn btn-danger bg-gradient" %>
+      <% elsif current_user.has_role? :newuser %>
+        <%= link_to "Book Tickets", book_ticket_movie_path(movie), class: "btn btn-danger bg-gradient" %>
+      <% end %>    
     </div>
     </div>
     </div>
