@@ -47,7 +47,7 @@ class MoviesController < ApplicationController
     redirect_to movies_path, status: :see_other
   end
 
-  def book_ticket
+  def show_seats
     curr_movie = Movie.find(params[:id])
     @theatres = {}
     Theatre.all.each do |theatre|
@@ -56,17 +56,36 @@ class MoviesController < ApplicationController
         #debugger
         if (temp.movie.id==curr_movie.id)
           #puts "hereeee"
-          @showtimes << temp.schedule
+          @showtimes << temp
         end
       end
       @theatres[theatre]=@showtimes
     end
   end
 
+  def book_tickets
+    @showtime = Showtime.find(params[:show_id])
+    @seats = @showtime.seats
+    seats_to_book = params[:no_of_tickets].to_i
+    if seats_to_book > @seats.where(availablity_status: 'true').count
+      redirect_to theatre_screen_showtime_path(theatre_id:params[:theatre_id],screen_id:params[:screen_id]), alert: "Seats not available"
+    else
+      @seats.each do |seat|
+        if seat.availablity_status == true && seats_to_book > 0
+          seat.availablity_status = false
+          seat.save
+          seats_to_book = seats_to_book - 1
+        end
+      end
+      redirect_to theatre_screen_showtime_path(theatre_id:params[:theatre_id],screen_id:params[:screen_id])
+    end
+    # debugger
+  end
+
   private
   
   def movie_params
-    params.require(:movie).permit(:name,:genre,:description)
+    params.require(:movie).permit(:name,:genre,:description, :movie_poster)
   end
 
 end

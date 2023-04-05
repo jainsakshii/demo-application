@@ -7,6 +7,10 @@
     <div class="col-md-3">
     <div class="card text-white bg-secondary bg-gradient mb-3" style="max-width: 18rem;">
     <div class="card-body">
+    <%if movie.movie_poster.present? %>
+        <%= image_tag movie.movie_poster, style: "width:16rem ;height:300px;", class: "btn btn-dark bg-gradient" %>
+    <%end%>
+    <br>
     <h5 class="card-title">
       <%= movie.name.capitalize%>
     </h5>
@@ -17,9 +21,9 @@
     </p>
       <%if current_user.has_role? :admin%>
         <%= link_to "Edit", edit_movie_path(movie), class: "btn btn-danger bg-gradient" %>
-        <%= link_to "Destroy", movie_path(movie), data: { method: :delete }, class: "btn btn-danger bg-gradient" %>
+        <%= link_to "Destroy", movie_path(movie), data: { method: :delete }, class: "btn btn-danger bg-gradient" %>        
       <% elsif current_user.has_role? :newuser %>
-        <%= link_to "Book Tickets", book_ticket_movie_path(movie), class: "btn btn-danger bg-gradient" %>
+        <%= link_to "Book Tickets", show_seats_movie_path(movie), class: "btn btn-danger bg-gradient" %>
       <% end %>    
     </div>
     </div>

@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: project3_development3
+  database: project3_development4
   port: 5432
   username: gammastack
   password: password
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: project3_test3
+  database: project3_test4
   port: 5432
   username: gammastack
   password: password
@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: project3_production3
+  database: project3_production4
   username: project3
   password: <%= ENV['PROJECT3_DATABASE_PASSWORD'] %>
