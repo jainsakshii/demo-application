@@ -4,5 +4,4 @@
   <p> Assign Movies </p>
   <%= form.select(:movie_id, options_for_select(Movie.all.collect { |l| [ l.name,l.id] }),{:class => "form-select"}) %>
   <%= link_to_remove_nested(form) %> 
-
 </div>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ScreensController < ApplicationController
   def index
     @screens = Screen.all

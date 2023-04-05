@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TheatresController < ApplicationController
   before_action :get_theatre, only: [:show,:edit,:update,:destroy]
   load_and_authorize_resource
@@ -17,8 +19,7 @@ class TheatresController < ApplicationController
   def create
     @theatre = Theatre.create(theatre_params)
     if @theatre.save
-      user_id = theatre_params[:theatre_administrator_id]
-      user = User.find(user_id)
+      user = User.find(theatre_params[:user_id])
       user.add_role :theatre_admin
       redirect_to theatres_path
     else
@@ -29,10 +30,9 @@ class TheatresController < ApplicationController
   def edit
   end
    
-  def update 
+  def update
     if @theatre.update(theatre_params)
-      user_id = theatre_params[:theatre_administrator_id]
-      user = User.find(user_id)
+      user = User.find(theatre_params[:user_id])
       user.add_role :theatre_admin
       redirect_to theatres_path
     else
@@ -52,7 +52,6 @@ class TheatresController < ApplicationController
   end
   
   def theatre_params
-    params.require(:theatre).permit(:name,:venue,:contact_number,:theatre_administrator_id)
+    params.require(:theatre).permit(:name, :venue, :contact_number, :user_id)
   end
-
 end

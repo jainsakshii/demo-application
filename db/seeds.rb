@@ -10,4 +10,7 @@
   User.create(:name => "S#{i}",:email => "user#{i}@yopmail.com", :password => "password#{i}",:password_confirmation => "password#{i}")
 end
 
+1.upto(10) do |i|
+  Movie.create(:name => "Harry Potter Part #{i}",:genre => "action", :description => "Amazing Movie")
+end
 

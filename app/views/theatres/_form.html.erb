@@ -15,7 +15,8 @@
   <br>
   <div>
     <p> Assign Role </p>
-    <%= form.select(:theatre_administrator_id, options_for_select(User.all.collect { |l| [ l.name,l.id] }),{:class => "form-select"}) %>
+    
+    <%= form.select(:user_id, options_for_select(User.all.collect { |l| [ l.name,l.id] }),{:class => "form-select"}) %>
   </div>
   <div>
     <%= form.submit %>
