@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :genre, :description, presence: true
   has_many :showtimes, dependent: :destroy
   has_many :screens, through: :showtimes
   has_one_attached :movie_poster

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :name,presence: true
   #User can have multiple theatre so we might change it to has_many
   has_one :theatre
+  has_many :bookings
   after_create :assign_default_role
    
   def assign_default_role

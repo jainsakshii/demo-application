@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :theatres do
     resources :screens do
       resources :showtimes, only: [:show]
-       
     end
   end
   
