@@ -89,7 +89,10 @@ class MoviesController < ApplicationController
   
   def make_bookings
     @booked_seats.each do |seat|
-      current_user.bookings.create(state:"Pending", showtime_id: @showtime.id, seat_id: seat.id)
+      @booking = current_user.bookings.create(state: "processed", showtime_id: @showtime.id, seat_id: seat.id)
+    end
+    if (@booked_seats.length()>0)
+      BookingMailMailer.create_mail_to_user(@booking).deliver_now
     end
   end
     

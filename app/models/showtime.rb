@@ -3,7 +3,7 @@ class Showtime < ApplicationRecord
   belongs_to :screen
   belongs_to :movie
   has_many :seats, dependent: :destroy
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
   after_create :making_seats
   
   private
