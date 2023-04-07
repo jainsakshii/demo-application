@@ -2,6 +2,7 @@
 
 class MoviesController < ApplicationController
   #load_and_authorize_resource
+  after_action :make_bookings,  only: %i[book_tickets]
   def index
     # debugger
     @q = Movie.ransack(params[:q])
@@ -66,6 +67,7 @@ class MoviesController < ApplicationController
   def book_tickets
     @showtime = Showtime.find(params[:show_id])
     @seats = @showtime.seats
+    @booked_seats = []
     seats_to_book = params[:no_of_tickets].to_i
     if seats_to_book > @seats.where(availablity_status: 'true').count
       redirect_to theatre_screen_showtime_path(theatre_id:params[:theatre_id],screen_id:params[:screen_id]), alert: "Seats not available"
@@ -74,6 +76,7 @@ class MoviesController < ApplicationController
         if seat.availablity_status == true && seats_to_book > 0
           seat.availablity_status = false
           seat.save
+          @booked_seats << seat
           seats_to_book = seats_to_book - 1
         end
       end
@@ -84,6 +87,15 @@ class MoviesController < ApplicationController
 
   private
   
+  def make_bookings
+    @booked_seats.each do |seat|
+      @booking = current_user.bookings.create(state: "processed", showtime_id: @showtime.id, seat_id: seat.id)
+    end
+    if (@booked_seats.length()>0)
+      BookingMailMailer.create_mail_to_user(@booking).deliver_now
+    end
+  end
+    
   def movie_params
     params.require(:movie).permit(:name,:genre,:description, :movie_poster)
   end

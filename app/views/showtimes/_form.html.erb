@@ -1,4 +1,4 @@
 <%= form_with url: book_tickets_movie_path(show_id: @showtime,theatre_id:params[:theatre_id],screen_id:params[:screen_id]) do |form| %>
   <%= form.number_field :no_of_tickets, placeholder:"Enter Num. of seats to book" %>
-  <%= form.submit %>
+  <%= form.submit "BOOK" %>
 <% end %>
