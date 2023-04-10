@@ -19,6 +19,9 @@ class ScreensController < ApplicationController
   #     redirect_to @screen 
   #   end
   # end
+  def edit
+    @screen = Screen.find(params[:id])
+  end
   def update 
     @screen = Screen.find(params[:id])
     if @screen.update(screen_params)

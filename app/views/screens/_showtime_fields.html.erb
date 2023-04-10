@@ -1,5 +1,5 @@
 <div class="wrapper-div">
-  <%= form.text_field :name %>
+  <%= form.text_field :name, placeholder: "Part of the day" %>
   <%= form.time_field :schedule %>
   <p> Assign Movies </p>
   <%= form.select(:movie_id, options_for_select(Movie.all.collect { |l| [ l.name,l.id] }),{:class => "form-select"}) %>

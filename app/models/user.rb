@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
          # :confirmable
-  validates :name,presence: true
+  #validates :name,presence: true
   #User can have multiple theatre so we might change it to has_many
   has_one :theatre
   has_many :bookings
