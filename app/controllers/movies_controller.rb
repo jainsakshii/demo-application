@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
   def index
     # debugger
     @q = Movie.ransack(params[:q])
-    @movies = @q.result
+    @movies = @q.result.kept
     # @movies = Movie.all
   end
 
@@ -43,7 +43,7 @@ class MoviesController < ApplicationController
 
   def destroy
     @movie = Movie.find(params[:id])
-    @movie.destroy
+    @movie.discard
 
     redirect_to movies_path, status: :see_other
   end

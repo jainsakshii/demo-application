@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  include Discard::Model
   validates :name, :genre, :description, presence: true
   has_many :showtimes, dependent: :destroy
   has_many :screens, through: :showtimes

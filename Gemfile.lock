@@ -88,6 +88,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    discard (1.2.1)
+      activerecord (>= 4.2, < 8)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -254,6 +256,7 @@ DEPENDENCIES
   cancancan
   capybara (>= 3.26)
   devise
+  discard (~> 1.2)
   dotenv-rails
   jbuilder (~> 2.7)
   letter_opener
