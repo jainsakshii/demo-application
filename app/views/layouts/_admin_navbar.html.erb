@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <%= link_to "Movie Planet :) ", home_index_path, class: "navbar-brand"%>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <div class="text-center">
+              <%= link_to "All Theatre", theatres_path, class: "btn btn-danger"%>
+              <%= link_to "Create Theatre", new_theatre_path, class: "btn btn-danger"%>
+               <%= link_to "Create Movie", new_movie_path, class: "btn btn-danger"%>
+               <%= link_to "All Movies", movies_path, class: "btn btn-danger"%>
+              <%= link_to "Signout",  destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<header>

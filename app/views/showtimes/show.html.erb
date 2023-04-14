@@ -6,9 +6,10 @@
         <div class="box">
           <p style="color:white;text-align:center;">  Seat</p>
         </div>
+
     </div>
     <% end %>
-  <%end%>
+  <%end%> 
   </div>
 </div>
 <style>
@@ -29,5 +30,4 @@ body{
 <p style="color:white;"> Num of available seats: <%=@showtime.seats.where(availablity_status: 'true').count %></p>
 
 <%= render "form",showtime: @showtime%>
-
-
+<%# <%= button_to "Book", checkout_create_path, params: {id:@showtime.id, booking_id: @booking}, method: :post, remote: true %> 

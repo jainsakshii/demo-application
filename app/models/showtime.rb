@@ -1,5 +1,5 @@
 class Showtime < ApplicationRecord
-  validates :name, :schedule, presence: true
+  #validates :name, :schedule, presence: true
   belongs_to :screen
   belongs_to :movie
   has_many :seats, dependent: :destroy
@@ -9,7 +9,7 @@ class Showtime < ApplicationRecord
   private
   def making_seats
     1.upto(10) do |i|
-      Showtime.last.seats.create(availablity_status: true, price: 100)
+      seats.create(name: "A#{i}", availablity_status: true, price: 100)
     end
   end
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TheatresController < ApplicationController
+  before_action :authenticate_user!
   before_action :get_theatre, only: [:show,:edit,:update,:destroy]
   load_and_authorize_resource
 

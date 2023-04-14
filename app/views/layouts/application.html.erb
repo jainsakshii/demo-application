@@ -10,9 +10,20 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag asset_path ('logo.webp')%>
-  </head>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
   <body>
-     <%= render "layouts/navbar" %>
+     <% if user_signed_in? %>
+      <%if current_user.has_role? :admin%>
+        <%= render "layouts/admin_navbar" %>
+      <%elsif current_user.has_role? :theatre_admin%>
+        <%= render "layouts/theatreadmin_navbar" %>
+      <%else%>
+        <%= render "layouts/newuser_navbar" %>
+     <%end%>
+     <%else%>
+       <%= render "layouts/signin_navbar" %>
+     <%end%>
      <br>
      <br>
       <p class="notice"><%= notice %></p>

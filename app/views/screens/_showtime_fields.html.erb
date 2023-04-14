@@ -1,6 +1,11 @@
 <div class="wrapper-div">
   <%= form.text_field :name, placeholder: "Part of the day" %>
   <%= form.time_field :schedule %>
+  <%= form.date_field :scheduleDate, min: Date.today %>
+  <br>
+  <p><strong>Mention start and end date to make it recuring</strong></p>
+  <%= form.date_field :start_date, min: Date.today %>
+   <%= form.date_field :end_date, min: Date.today %>
   <p> Assign Movies </p>
   <%= form.select(:movie_id, options_for_select(Movie.all.collect { |l| [ l.name,l.id] }),{:class => "form-select"}) %>
   <%= link_to_remove_nested(form) %> 
