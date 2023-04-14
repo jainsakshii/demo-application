@@ -7,8 +7,15 @@
   <%end%>
   <% v.each do |temp| %>
   <button type="button" class="list-group-item list-group-item-action">
-    <%= link_to 'Book show', theatre_screen_showtime_path(theatre_id: k.id,screen_id: k.screen,id: temp.id), class: "btn btn-danger bg-gradient" %>
-      <%=temp.schedule%>
+    <% if temp.seats.where(availablity_status: "false").count == 10%>
+      <div class="alert alert-danger" role="alert">
+        Seats not available
+      <strong>Time: </strong><%=temp.schedule.hour%>:<%=temp.schedule.min%><strong> Date:</strong> <%=temp.scheduleDate%>
+      </div>
+    <% else %>
+      <%= link_to 'Book show', theatre_screen_showtime_path(theatre_id: k.id,screen_id: k.screen,id: temp.id), class: "btn btn-danger bg-gradient" %>
+      <strong>Time: </strong><%=temp.schedule.hour%>:<%=temp.schedule.min%><strong> Date:</strong> <%=temp.scheduleDate%>
+    <%end%>
     </button>
   <%end%>
 <br>

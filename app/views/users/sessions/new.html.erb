@@ -115,11 +115,13 @@ body {
         <br>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <form class="p-1 mt-1">
-            <div class="form-field d-flex align-items-center">
+          
+              <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
                   <div class="field">
-                    <%= f.email_field :email, placeholder: "Email" %>
-                    <!--autofocus: true, autcomplete: email if needed-->
+                    <div class="mb-6">
+                        <%= f.text_field :login, class: "input", placeholder: "Username or email or phone" %>
+                     </div>
                   </div>
             </div>
             <div class="form-field d-flex align-items-center">

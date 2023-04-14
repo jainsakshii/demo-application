@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_05_133740) do
+ActiveRecord::Schema.define(version: 2023_04_13_114529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,10 @@ ActiveRecord::Schema.define(version: 2023_04_05_133740) do
   create_table "bookings", force: :cascade do |t|
     t.string "state"
     t.bigint "user_id", null: false
-    t.bigint "seat_id", null: false
     t.bigint "showtime_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["seat_id"], name: "index_bookings_on_seat_id"
+    t.integer "total_seats_booked"
     t.index ["showtime_id"], name: "index_bookings_on_showtime_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -61,6 +60,8 @@ ActiveRecord::Schema.define(version: 2023_04_05_133740) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_movies_on_discarded_at"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -83,10 +84,11 @@ ActiveRecord::Schema.define(version: 2023_04_05_133740) do
 
   create_table "seats", force: :cascade do |t|
     t.boolean "availablity_status"
-    t.string "price"
     t.bigint "showtime_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.integer "price"
     t.index ["showtime_id"], name: "index_seats_on_showtime_id"
   end
 
@@ -97,6 +99,9 @@ ActiveRecord::Schema.define(version: 2023_04_05_133740) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "movie_id", null: false
+    t.date "scheduleDate"
+    t.date "start_date"
+    t.date "end_date"
     t.index ["movie_id"], name: "index_showtimes_on_movie_id"
     t.index ["screen_id"], name: "index_showtimes_on_screen_id"
   end
@@ -125,6 +130,8 @@ ActiveRecord::Schema.define(version: 2023_04_05_133740) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -139,7 +146,6 @@ ActiveRecord::Schema.define(version: 2023_04_05_133740) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookings", "seats"
   add_foreign_key "bookings", "showtimes"
   add_foreign_key "bookings", "users"
   add_foreign_key "screens", "theatres"

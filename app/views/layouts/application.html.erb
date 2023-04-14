@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project3</title>
+    <title>Movie Planet :-)</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,9 +9,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <%= favicon_link_tag asset_path ('logo.webp')%>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
   <body>
-     <%= render "layouts/navbar" %>
+     <% if user_signed_in? %>
+      <%if current_user.has_role? :admin%>
+        <%= render "layouts/admin_navbar" %>
+      <%elsif current_user.has_role? :theatre_admin%>
+        <%= render "layouts/theatreadmin_navbar" %>
+      <%else%>
+        <%= render "layouts/newuser_navbar" %>
+     <%end%>
+     <%else%>
+       <%= render "layouts/signin_navbar" %>
+     <%end%>
      <br>
      <br>
       <p class="notice"><%= notice %></p>
