@@ -1,6 +1,5 @@
-
 <%= search_form_for @q do |f| %>
-  <%= f.label :name_cont, 'Name' %>
-  <%= f.search_field :name_cont %>
-  <%= f.submit %>
-<% end %>
+  <%= f.search_field :name_cont, placeholder: "Search Movie", class: "form-outline" %>
+  <%= f.submit 'Search' , class: "btn btn-danger" %>
+<%end%>
+
