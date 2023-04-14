@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
     redirect_to home_index_path, alert: "You are not access to given page."
   end
 
-  
-  
   protected
   
   def after_sign_in_path_for(resource)
@@ -28,9 +26,9 @@ class ApplicationController < ActionController::Base
 
   private 
 
-  # def record_not_found
-  #   redirect_to root_path, alert: "Record not found"
-  # end
+  def record_not_found
+    redirect_to root_path, alert: "Record not found"
+  end
 
 end
 

@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
       end
       if (@booked_seats.length()>0)
         @booking = current_user.bookings.create(state: "processed", showtime_id: @showtime.id, total_seats_booked: params[:no_of_tickets].to_i)
-        # BookingMailMailer.create_mail_to_user(@booking).deliver_now
+        BookingMailMailer.create_mail_to_user(@booking).deliver_now
       end
       redirect_to cart_movie_booking_path(id:@booking, show_id: @showtime,theatre_id:params[:theatre_id],screen_id:params[:screen_id],seats: params[:no_of_tickets])
     end

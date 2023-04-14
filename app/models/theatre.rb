@@ -8,6 +8,6 @@ class Theatre < ApplicationRecord
   
   private
   def making_screen
-    build_screen(name:"#{Theatre.last.name} screen").save
+    build_screen(name:"#{name} screen").save
   end
 end

@@ -6,9 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, authentication_keys: [:login]
          # :confirmable
-  #validates :name,presence: true
-
-  validates :username, presence: true, uniqueness: true
+  validates :name,presence: true
+  validates :username, :phone, presence: true, uniqueness: true
 
   attr_accessor :login
 
