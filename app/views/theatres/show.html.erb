@@ -1,0 +1,21 @@
+<div class="row row-cols-1 row-cols-md-3">
+<div class="col-md-3">
+<div class="card text-white bg-secondary bg-gradient mb-3" style="max-width: 18rem;">
+<div class="card-body">
+<h5 class="card-title">
+<%= @theatre.name %>
+</h5>
+<p class="card-text">
+<%= @theatre.contact_number %>
+<br>
+<%= @theatre.venue %>
+<%= @theatre.user_id %>
+</p>
+<%= link_to "Edit", edit_theatre_path(@theatre), class: "btn btn-danger" %>
+<%= link_to "Show Screen", theatre_screen_path(theatre_id: @theatre,id: @theatre.screen.id), class: "btn btn-danger" %>
+<br>
+<br>
+<%= link_to "Destroy", theatre_path(@theatre), data: { method: :delete }, class: "btn btn-danger" %>
+</div>
+</div>
+</div>

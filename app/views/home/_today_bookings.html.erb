@@ -1,0 +1,12 @@
+<% @personal_bookings.each do |booking| %>
+<%if Date.today == Showtime.find(booking.showtime_id).scheduleDate %>
+<ul class="list-group mx-auto justify-content-center list-group-horizontal">
+  <% m = Showtime.find(booking.showtime_id).movie_id%>
+  <li class="list-group-item"> Movie: <strong><%= Movie.find(m).name%></strong></li>
+  <li class="list-group-item">Total Book Seats: <%= booking.total_seats_booked %></li>
+  <li class="list-group-item">Time: <%= Showtime.find(booking.showtime_id).schedule %></li>
+  <li class="list-group-item">Date: <%= Showtime.find(booking.showtime_id).scheduleDate %></li>
+   <li class="list-group-item">Total price: <%= 100*booking.total_seats_booked %></li>
+</ul>
+<%end%>
+<%end%>

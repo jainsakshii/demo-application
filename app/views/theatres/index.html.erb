@@ -1,0 +1,31 @@
+<h1>All Theatres</h1>
+<ul>
+  <div class="row row-cols-1 row-cols-md-3">
+  <% @theatres.each do |theatre| %>
+    <div class="col-md-3" id = "theatre<%=theatre.id%>">
+    <div class="card text-white bg-secondary bg-gradient mb-3" style="max-width: 18rem;">
+    <div class="card-body">
+    <h5 class="card-title">
+      <%= theatre.name.capitalize%>
+    </h5>
+    <p class="card-text">
+      <%= theatre.contact_number %>
+      <br>
+      <%= theatre.venue %>
+      <%= theatre.user_id %>
+    </p>
+    <% if current_user.has_role? :admin %>
+      <%= link_to "Edit", edit_theatre_path(theatre), class: "btn btn-danger bg-gradient" %>
+      <%= link_to "Destroy", theatre_path(theatre), data: { method: :delete, remote: true }, class: "btn btn-danger bg-gradient" %>
+    <% elsif current_user.has_role? :theatre_admin %>
+      <%= link_to "Show Screen", theatre_screen_path(theatre_id: theatre,id: theatre.screen.id), class: "btn btn-danger" %>
+    <% end %>
+    </div>
+    </div>
+    </div>
+  <% end %>
+  </div>
+</ul>
+<% if current_user.has_role? :admin%>
+<%= link_to "Create Theatre", new_theatre_path, class: "btn btn-danger"%>
+<% end %>

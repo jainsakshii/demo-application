@@ -1,0 +1,13 @@
+<h2><%=@screen.name%></h2>
+<ul>
+<% @screen.showtimes.each do |temp| %>
+  <li>
+    <%= temp.name %>
+    <%= temp.schedule%>
+    <%= temp.scheduleDate%>
+    <%=temp.movie.name %>
+    
+  </li>
+  <% end %>
+</ul>
+<%= render "form",screen: @screen%>

@@ -1,0 +1,23 @@
+<div class="list-group">
+<% @theatres.each do |k,v|%>
+  <% if (v.count>0)%>
+    <div class="list-group-item list-group-item-action list-group-item bg-secondary bg-gradient", style="color:white">
+    <%= k.name %>
+    </div>
+  <%end%>
+  <% v.each do |temp| %>
+  <button type="button" class="list-group-item list-group-item-action">
+    <% if temp.seats.where(availablity_status: "false").count == 10%>
+      <div class="alert alert-danger" role="alert">
+        Seats not available
+      <strong>Time: </strong><%=temp.schedule.hour%>:<%=temp.schedule.min%><strong> Date:</strong> <%=temp.scheduleDate%>
+      </div>
+    <% else %>
+      <%= link_to 'Book show', theatre_screen_showtime_path(theatre_id: k.id,screen_id: k.screen,id: temp.id), class: "btn btn-danger bg-gradient" %>
+      <strong>Time: </strong><%=temp.schedule.hour%>:<%=temp.schedule.min%><strong> Date:</strong> <%=temp.scheduleDate%>
+    <%end%>
+    </button>
+  <%end%>
+<br>
+<%end%>
+</div>

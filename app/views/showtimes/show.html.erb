@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+  <% @seats.each do |seat| %>
+    <% if seat.availablity_status == true %>
+    <div class="col-lg-1 col-md-1 col-xs-6 ">
+        <div class="box">
+          <p style="color:white;text-align:center;">  Seat</p>
+        </div>
+
+    </div>
+    <% end %>
+  <%end%> 
+  </div>
+</div>
+<style>
+body{
+  background: #282828;
+}
+.box {
+   background: grey !important;
+   width: 50px;
+   height: 50px;
+}
+
+.col-lg-2, .col-md-3, .col-xs-6{
+    margin-top: 20px !important;
+}
+</style>
+<br>
+<p style="color:white;"> Num of available seats: <%=@showtime.seats.where(availablity_status: 'true').count %></p>
+
+<%= render "form",showtime: @showtime%>
+<%# <%= button_to "Book", checkout_create_path, params: {id:@showtime.id, booking_id: @booking}, method: :post, remote: true %> 

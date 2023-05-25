@@ -1,0 +1,23 @@
+<%= form_with model: @movie do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :genre %><br>
+    <%= form.text_field :genre %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+    <div>
+    <%= form.label :movie_poster %><br>
+    <%= form.file_field :movie_poster, data: { placeholder: movie.movie_poster || "No file selected" } %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

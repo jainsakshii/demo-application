@@ -1,0 +1,25 @@
+<%= form_with model: @theatre do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :contact_number %><br>
+    <%= form.text_field :contact_number %>
+  </div>
+
+  <div>
+    <%= form.label :venue %><br>
+    <%= form.text_area :venue %>
+  </div>
+  <br>
+  <div>
+    <p> Assign Role </p>
+    
+    <%= form.select(:user_id, options_for_select(User.all.collect { |l| [ l.name,l.id] }),{:class => "form-select"}) %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+

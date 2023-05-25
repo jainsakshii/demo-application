@@ -1,0 +1,39 @@
+<%= render "search_movie",movie: @movie%>
+
+<h1>All Movies</h1>
+<ul>
+  <div class="row row-cols-1 row-cols-md-3">
+  <% @movies.each do |movie| %>
+    <div class="col-md-3">
+    <div class="card text-white bg-secondary bg-gradient mb-3" style="max-width: 18rem;">
+    <div class="card-body">
+    <%if movie.movie_poster.present? %>
+        <%= image_tag movie.movie_poster, style: "width:16rem ;height:300px;", class: "btn btn-dark bg-gradient" %>
+    <%end%>
+    <br>
+    <h5 class="card-title">
+      <%= movie.name.capitalize%>
+    </h5>
+    <p class="card-text">
+      <%= movie.genre %>
+      <br>
+      <%= movie.description %>
+    </p>
+      <%if current_user.has_role? :admin%>
+        <%= link_to "Edit", edit_movie_path(movie), class: "btn btn-danger bg-gradient" %>
+        <%= link_to "Destroy", movie_path(movie), data: { method: :delete }, class: "btn btn-danger bg-gradient" %>        
+      <% elsif current_user.has_role? :newuser %>
+        <% if movie.showtimes.count > 0 %>
+          <%= link_to "Book Tickets", show_seats_movie_path(movie), class: "btn btn-danger bg-gradient" %>
+        <% else %>
+          <div class="alert alert-success" role="alert">
+            Showtimes will be available soon.
+          </div>
+        <% end %>   
+      <%end%> 
+    </div>
+    </div>
+    </div>
+  <% end %>
+  </div>
+</ul>

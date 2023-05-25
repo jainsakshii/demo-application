@@ -1,0 +1,3 @@
+<h1>You cart consist of <%= @seats %> seat</h1>
+
+<%= link_to "Pay", bookings_payment_initiate_path(show_id: params[:show_id],seats:params[:seats],id:params[:id]),method: :post,remote: true, class:"btn btn-success" %>
