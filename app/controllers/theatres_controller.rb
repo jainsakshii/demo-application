@@ -2,7 +2,7 @@
 
 class TheatresController < ApplicationController
   before_action :authenticate_user!
-  before_action :get_theatre, only: [:show,:edit,:update,:destroy]
+  before_action :get_theatre, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   def index
@@ -14,8 +14,7 @@ class TheatresController < ApplicationController
     @theatre = Theatre.new
   end
 
-  def show
-  end
+  def show; end
    
   def create
     @theatre = Theatre.create(theatre_params)
@@ -28,8 +27,7 @@ class TheatresController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
    
   def update
     if @theatre.update(theatre_params)
@@ -43,7 +41,13 @@ class TheatresController < ApplicationController
 
   def destroy
     @theatre.destroy
-    redirect_to theatres_path, status: :see_other
+    respond_to do |format|
+      format.html { redirect_to theatres_path, status: :see_other }
+      #format.json { head: no_content }
+      # Ajax.call
+      format.js
+    end
+    #redirect_to theatres_path, status: :see_other
   end
 
   private

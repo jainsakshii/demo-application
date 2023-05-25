@@ -2,7 +2,7 @@
 <ul>
   <div class="row row-cols-1 row-cols-md-3">
   <% @theatres.each do |theatre| %>
-    <div class="col-md-3">
+    <div class="col-md-3" id = "theatre<%=theatre.id%>">
     <div class="card text-white bg-secondary bg-gradient mb-3" style="max-width: 18rem;">
     <div class="card-body">
     <h5 class="card-title">
@@ -16,7 +16,7 @@
     </p>
     <% if current_user.has_role? :admin %>
       <%= link_to "Edit", edit_theatre_path(theatre), class: "btn btn-danger bg-gradient" %>
-      <%= link_to "Destroy", theatre_path(theatre), data: { method: :delete }, class: "btn btn-danger bg-gradient" %>
+      <%= link_to "Destroy", theatre_path(theatre), data: { method: :delete, remote: true }, class: "btn btn-danger bg-gradient" %>
     <% elsif current_user.has_role? :theatre_admin %>
       <%= link_to "Show Screen", theatre_screen_path(theatre_id: theatre,id: theatre.screen.id), class: "btn btn-danger" %>
     <% end %>
